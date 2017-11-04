@@ -4,6 +4,7 @@
   "description": "simple jobs crud app",
   "main": "app.js",
   "scripts": {
+    "start": "react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot"
   },
@@ -26,6 +27,7 @@
   "author": "Rudi Aj",
   "license": "ISC",
   "devDependencies": {
+    "react-scripts":"*",
     "babel-core": "^6.26.0",
     "babel-loader": "^6.4.1"
   }
