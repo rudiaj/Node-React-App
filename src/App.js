@@ -40,12 +40,11 @@ class App extends Component {
             })
     }
 
-        render()
-        {
+        render() {
             return (
                 <div>
                     <h1>hello worldd</h1>
-                    <Jobs jobs={this.state.jobs} />
+                    <Jobs  />
                     <br/>
                     <AddJob addJob={this.handleAddJob.bind(this)} />
                 </div>

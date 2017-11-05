@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 //Job Schema
 
+// TODO:finish schema to match requierments
+
 var jobSchema = mongoose.Schema({
     message:{
         type:String,
