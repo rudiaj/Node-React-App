@@ -14,7 +14,7 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 app.use(bodyParser.json());
 
-
+//TODO: sanitize inc data
 
 Job = require('./models/job');
 //Connect to mongoose
