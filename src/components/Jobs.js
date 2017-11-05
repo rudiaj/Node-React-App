@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import Job from './Job';
-import AddJob from './AddJob';
+
 
 class Jobs extends Component {
 
     constructor(props){
-        // let httpConf = { method: 'GET',
-        //     cache: 'default'
-        // };
         super(props);
         this.getJobs();
-
     }
 
     getJobs(){
         fetch('http://localhost:3000/api/jobs')
             .then((res)=>{
-                console.log('uso u then, evo ga i response', res.json())
+            console.log(res.json())
             })
             .catch((res)=>{
             console.log(res)
@@ -38,8 +34,6 @@ class Jobs extends Component {
             <div>
                 <h1>jobs</h1>
                 {jobItems}
-                <br/>
-                <AddJob/>
             </div>
         )
     }

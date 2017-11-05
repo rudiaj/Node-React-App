@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -10,10 +11,10 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
 
-
-    app.use(allowCrossDomain);
-
+app.use(allowCrossDomain);
 app.use(bodyParser.json());
+
+
 
 Job = require('./models/job');
 //Connect to mongoose
@@ -36,7 +37,7 @@ app.get('/api/jobs', function (req,res){
 
 app.post('/api/jobs', function (req,res){
     var job = req.body;
-
+    console.log('ovo sam dobio', job)
     Job.addJob(job, function (err, job) {
         console.log('ovo je iz bodija', job);
         if(err){

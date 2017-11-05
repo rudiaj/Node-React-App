@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Jobs from './components/Jobs';
+import AddJob from './components/AddJob';
 
 class App extends Component {
     constructor (){
@@ -22,12 +23,31 @@ class App extends Component {
         }
     };
 
+    handleAddJob(job){
+        console.log('job iz main appa koji sma prosljedio', job);
+        fetch('http://localhost:3000/api/jobs',{
+            method: 'POST',
+            headers:{
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify(job) ,
+            })
+            .then((res)=>{
+                console.log(res)
+            })
+            .catch((res)=>{
+                console.log(res)
+            })
+    }
+
         render()
         {
             return (
                 <div>
                     <h1>hello worldd</h1>
                     <Jobs jobs={this.state.jobs} />
+                    <br/>
+                    <AddJob addJob={this.handleAddJob.bind(this)} />
                 </div>
             )
         }
