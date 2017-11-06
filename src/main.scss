@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  margin: 0;
+}
+
+.jobs-container{
+  display: flex;
+  width: 600px;
+  margin: auto;
+  justify-content:space-between;
+  flex-wrap: wrap;
+}
+
+.card{
+  flex:0.5;
+  margin:20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+ .card-body{
+   display: flex;
+   flex-direction:column;
+ }
+}
+.input-wrapper{
+  display: flex;
+  flex-direction: column;
+  .input-element {
+    transition: all 0.2s ease-in-out;
+    height: 20px;
+    padding: 5px 10px;
+    min-width: 300px;
+    margin: 5px 0;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #3C4858;
+    border: 1px solid transparent;
+    border-radius: 2px;
+  }
+}
+
+.button {
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 100px;
+  min-width: initial;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  background-color: #FF469C;
+  background-image: linear-gradient(90deg, #FF469C 0, #FF4646 100%);
+  color: white;
+  box-shadow: none;
+  &:hover {
+    background-color: #3C4858;
+    background-image: none;
+  }
+}
+.form{
+  margin:auto;
+  width:600px;
+  //display: flex;
+  //flex-direction: column;
+}

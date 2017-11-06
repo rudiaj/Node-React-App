@@ -1,7 +1,28 @@
 var express = require('express');
+var util = require('util');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var expressValidator = require('express-validator');
+var path = require('path');
+var WebClient = require('@slack/client').WebClient;
+
+
+var token ='xoxp-267271537443-266830322769-268430392327-e6a4c771332c8c8ce772d57d250f4832';
+
+var web = new WebClient(token);
+
+web.channels.list(function(err, info) {
+    if (err) {
+        console.log('Error:', err);
+    } else {
+        for(var i in info.channels) {
+            console.log(info.channels[i].name);
+        }
+    }
+});
+
+// console.log(process.env);
 
 
 var allowCrossDomain = function(req, res, next) {
@@ -10,9 +31,11 @@ var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 }
-
+app.use(express.static('public'));
 app.use(allowCrossDomain);
 app.use(bodyParser.json());
+app.use(expressValidator());
+
 
 //TODO: sanitize inc data
 
@@ -21,13 +44,12 @@ Job = require('./models/job');
 mongoose.connect('mongodb://localhost/jobs',{useMongoClient: true});
 var db = mongoose.connection;
 
-app.get('/', function (req,res){
-    res.send('Hello World');
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/src/index.html'));
 });
 
 app.get('/api/jobs', function (req,res){
     Job.getJobs(function (err, jobs) {
-        console.log('uso u get');
         if(err){
             throw err;
         }
@@ -37,14 +59,26 @@ app.get('/api/jobs', function (req,res){
 
 app.post('/api/jobs', function (req,res){
     var job = req.body;
-    console.log('ovo sam dobio', job)
-    Job.addJob(job, function (err, job) {
-        console.log('ovo je iz bodija', job);
-        if(err){
-            throw err;
-        }
-        res.json(job);
-    });
+    req.checkBody('message', 'message is required').notEmpty();
+    req.checkBody('time', 'time is required').notEmpty();
+    req.checkBody('channel', 'channel is required').notEmpty();
+    req.checkBody('status', 'status is required').notEmpty();
+
+    // check for errors!
+    var errors = req.validationErrors();
+    if (errors) {
+        res.send('There have been validation errors: ' + util.inspect(errors), 400);
+        return;
+    }
+    else{
+        Job.addJob(job, function (err, job) {
+            console.log('ovo je iz bodija', job);
+            if(err){
+                throw err;
+            }
+            res.json(job);
+        });
+    }
 });
 
 

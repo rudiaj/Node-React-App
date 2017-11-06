@@ -11,11 +11,16 @@ class Job extends Component {
 
     render() {
         return (
-        <div>
-            {this.props.index}
-            <br/>
-            {this.props.job._id} - {this.props.job.message}
-            <button onClick={this.delete.bind(this)}>delete</button>
+        <div className="card">
+            <div className="card-body">
+                <span>{this.props.index}</span>
+                <span>{this.props.job.time}</span>
+                <span>{this.props.job.message}</span>
+                 <span>{this.props.job.channel}</span>
+                <span>{this.props.job.status}</span>
+            </div>
+
+            <button className="button" onClick={this.delete.bind(this)}>delete</button>
         </div>
         )
     }

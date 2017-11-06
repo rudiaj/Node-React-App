@@ -1,7 +1,7 @@
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: './dist',
+        path: './public',
         filename: 'app.bundle.js',
     },
     module: {
@@ -13,6 +13,14 @@ module.exports = {
                 presets: ['react', 'es2015', 'stage-0'],
                 plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
             }
-        }]
+        },
+            {
+                test: /\.(css|scss)$/,
+                loaders: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },]
     }
 }

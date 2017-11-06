@@ -5,23 +5,9 @@ import AddJob from './components/AddJob';
 class App extends Component {
     constructor (){
         super();
-        this.state = {
-            jobs:[
-                {
-                    title:'job title 1',
-                    name:'job name 1'
-                },
-                {
-                    title:'job title 2',
-                    name:'job name 2'
-                },
-                {
-                    title:'job title 3',
-                    name:'job name 3'
-                },
-            ]
-        }
+        this.state = {}
     };
+
 
     handleAddJob(job){
         console.log('job iz main appa koji sma prosljedio', job);
@@ -32,9 +18,6 @@ class App extends Component {
             },
             body: JSON.stringify(job) ,
             })
-            .then((res)=>{
-                console.log(res)
-            })
             .catch((res)=>{
                 console.log(res)
             })
@@ -43,7 +26,7 @@ class App extends Component {
         render() {
             return (
                 <div>
-                    <h1>hello worldd</h1>
+                    <h1>jobs app</h1>
                     <Jobs  />
                     <br/>
                     <AddJob addJob={this.handleAddJob.bind(this)} />

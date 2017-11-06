@@ -25,6 +25,7 @@ class Jobs extends Component {
                 this.setState({
                     allJobs:data
                 })
+                console.log(this.state.allJobs)
             })
             .catch((res) => {
                 console.log(res)
@@ -57,42 +58,15 @@ class Jobs extends Component {
         });
         return (
             <div>
-                <h1>jobs</h1>
-                {jobItems}
+                <h2>jobs</h2>
+                <div className="jobs-container">
+                    {jobItems}
+                </div>
+
             </div>
+
         )
-            }
+    }
 }
 
 export default Jobs;
-// export default class UserList extends React.Component {
-//     constructor(props) {
-//         super(props);
-//
-//         this.state = {person: []};
-//     }
-//
-//     componentDidMount() {
-//         this.UserList();
-//     }
-//
-//     UserList() {
-//         $.getJSON('https://randomuser.me/api/')
-//             .then(({ results }) => this.setState({ person: results }));
-//     }
-//
-//     render() {
-//         const persons = this.state.person.map((item, i) => (
-//             <div>
-//                 <h1>{ item.name.first }</h1>
-//                 <span>{ item.cell }, { item.email }</span>
-//             </div>
-//         ));
-//
-//         return (
-//             <div id="layout-content" className="layout-content-wrapper">
-//                 <div className="panel-list">{ persons }</div>
-//             </div>
-//         );
-//     }
-// }
